@@ -22,7 +22,7 @@ public class Pizza {
     @Column(nullable = false,length = 150)
     private String description;
 
-    @Column(nullable = false,columnDefinition = "Decimal(5,2)")
+    @Column(nullable = false,columnDefinition = "DECIMAL(5,2)")
     private Double price;
 
     @Column(columnDefinition = "TINYINT")
