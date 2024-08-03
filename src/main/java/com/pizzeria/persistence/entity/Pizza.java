@@ -34,5 +34,4 @@ public class Pizza {
     @Column(columnDefinition = "TINYINT",nullable = false)
     private Boolean available;
 
-
 }
