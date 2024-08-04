@@ -64,4 +64,20 @@ public class PizzaService {
             throw new Exception(e.getMessage());
         }
     }
+
+    public List<Pizza> getWith(String description) throws Exception {
+        try {
+            return pizzaRepository.findAllByAvailableTrueAndDescriptionContainingIgnoreCase(description);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Pizza> getWithout(String description) throws Exception {
+        try {
+            return pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainingIgnoreCase(description);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

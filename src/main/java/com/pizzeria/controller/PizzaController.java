@@ -49,5 +49,15 @@ public class PizzaController {
         return ResponseEntity.ok(pizzaService.findAllByAvailabilityAndName(name));
     }
 
+    @GetMapping("/with/{ingredient}")
+    public ResponseEntity<?> getWith(@PathVariable(name = "ingredient")String ingredient) throws Exception {
+        return ResponseEntity.ok(pizzaService.getWith(ingredient));
+    }
+
+    @GetMapping("/without/{ingredient}")
+    public ResponseEntity<?> getWithout(@PathVariable(name = "ingredient")String ingredient) throws Exception {
+        return ResponseEntity.ok(pizzaService.getWithout(ingredient));
+    }
+
 
 }
