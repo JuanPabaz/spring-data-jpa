@@ -1,12 +1,10 @@
 package com.pizzeria.controller;
 
+import com.pizzeria.persistence.entity.Pizza;
 import com.pizzeria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pizza")
@@ -21,8 +19,18 @@ public class PizzaController {
     }
 
     @GetMapping("/{idPizza}")
-    public ResponseEntity<?> getById(@PathVariable(name = "idPizza")Integer idPizza) throws Exception {
+    public ResponseEntity<?> getById(@PathVariable(name = "idPizza")Integer idPizza) {
         return ResponseEntity.ok(pizzaService.getById(idPizza));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody Pizza pizza){
+        return ResponseEntity.ok(pizzaService.save(pizza));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody Pizza pizza){
+        return ResponseEntity.ok(pizzaService.update(pizza));
     }
 
 }
