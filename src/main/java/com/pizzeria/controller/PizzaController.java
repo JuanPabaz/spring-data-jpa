@@ -19,7 +19,7 @@ public class PizzaController {
     }
 
     @GetMapping("/{idPizza}")
-    public ResponseEntity<?> getById(@PathVariable(name = "idPizza")Integer idPizza) {
+    public ResponseEntity<?> getById(@PathVariable(name = "idPizza")Integer idPizza) throws Exception {
         return ResponseEntity.ok(pizzaService.getById(idPizza));
     }
 
@@ -29,8 +29,15 @@ public class PizzaController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody Pizza pizza){
+    public ResponseEntity<?> update(@RequestBody Pizza pizza) throws Exception {
         return ResponseEntity.ok(pizzaService.update(pizza));
     }
+
+    @DeleteMapping("/{idPizza}")
+    public ResponseEntity<Void> deleteById(@PathVariable(name = "idPizza")Integer idPizza) throws Exception {
+        pizzaService.delete(idPizza);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

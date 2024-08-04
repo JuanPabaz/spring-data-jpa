@@ -17,22 +17,35 @@ public class PizzaService {
         return pizzaRepository.findAll();
     }
 
-    public Pizza getById(Integer idPizza){
-        return pizzaRepository.findById(idPizza).orElse(null);
+    public Pizza getById(Integer idPizza) throws Exception {
+        try {
+            return pizzaRepository.findById(idPizza).orElse(null);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
     }
 
     public Pizza save(Pizza pizza){
         return pizzaRepository.save(pizza);
     }
 
-    public Pizza update(Pizza pizza){
+    public Pizza update(Pizza pizza) throws Exception {
         try {
             if (!pizzaRepository.existsById(pizza.getIdPizza()) || pizza.getIdPizza() == null){
                 throw new RuntimeException("El id no es valido");
             }
             return pizzaRepository.save(pizza);
         }catch (Exception e){
-            throw new RuntimeException(e.getMessage());
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public void delete(Integer idPizza) throws Exception {
+        try {
+            pizzaRepository.deleteById(idPizza);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
         }
     }
 }
