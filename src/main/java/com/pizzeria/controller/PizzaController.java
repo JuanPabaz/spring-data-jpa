@@ -39,5 +39,15 @@ public class PizzaController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/available")
+    public ResponseEntity<?> getAllByAvailability() throws Exception {
+        return ResponseEntity.ok(pizzaService.findAllByAvailability());
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> getAllByAvailabilityAndName(@PathVariable(name = "name")String name) throws Exception {
+        return ResponseEntity.ok(pizzaService.findAllByAvailabilityAndName(name));
+    }
+
 
 }

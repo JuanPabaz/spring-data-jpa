@@ -48,4 +48,20 @@ public class PizzaService {
             throw new Exception(e.getMessage());
         }
     }
+
+    public List<Pizza> findAllByAvailability() throws Exception {
+        try {
+           return pizzaRepository.findAllByAvailableTrueOrderByPrice();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public Pizza findAllByAvailabilityAndName(String name) throws Exception {
+        try {
+            return pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }
