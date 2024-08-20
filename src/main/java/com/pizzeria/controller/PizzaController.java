@@ -59,5 +59,10 @@ public class PizzaController {
         return ResponseEntity.ok(pizzaService.getWithout(ingredient));
     }
 
+    @GetMapping("/cheapest/{price}")
+    public ResponseEntity<?> getCheapest(@PathVariable(name = "price")Double price) throws Exception {
+        return ResponseEntity.ok(pizzaService.findCheapestPizza(price));
+    }
+
 
 }
