@@ -1,8 +1,12 @@
 package com.pizzeria.service;
 
 import com.pizzeria.persistence.entity.Pizza;
+import com.pizzeria.persistence.repository.PizzaPagSortRepository;
 import com.pizzeria.persistence.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +17,12 @@ public class PizzaService {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    public List<Pizza> getAll(){
-        return pizzaRepository.findAll();
+    @Autowired
+    private PizzaPagSortRepository pizzaPagSortRepository;
+
+    public Page<Pizza> getAll(int page, int elements) {
+        Pageable pageable = PageRequest.of(page, elements);
+        return pizzaPagSortRepository.findAll(pageable);
     }
 
     public Pizza getById(Integer idPizza) throws Exception {

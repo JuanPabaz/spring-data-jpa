@@ -14,8 +14,9 @@ public class PizzaController {
     private PizzaService pizzaService;
 
     @GetMapping
-    public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(pizzaService.getAll());
+    public ResponseEntity<?> getAll(@RequestParam(name = "page", defaultValue = "0")Integer page,
+                                    @RequestParam(name = "elements",defaultValue = "8")Integer elements) {
+        return ResponseEntity.ok(pizzaService.getAll(page, elements));
     }
 
     @GetMapping("/{idPizza}")
