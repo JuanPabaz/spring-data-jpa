@@ -4,6 +4,7 @@ import com.pizzeria.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,11 @@ public class OrderController {
     @GetMapping("/method")
     public ResponseEntity<?> getByMethod() throws Exception {
         return ResponseEntity.ok(orderService.getOutsideOrders());
+    }
+
+    @GetMapping("/customer/{idCustomer}")
+    public ResponseEntity<?> getByCustomerId(@PathVariable(name = "idCustomer") String idCustomer) throws Exception {
+        return ResponseEntity.ok(orderService.getCustomerOrders(idCustomer));
     }
 
 }
