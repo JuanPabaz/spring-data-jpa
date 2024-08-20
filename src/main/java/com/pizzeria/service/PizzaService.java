@@ -59,7 +59,7 @@ public class PizzaService {
 
     public Pizza findAllByAvailabilityAndName(String name) throws Exception {
         try {
-            return pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
+            return pizzaRepository.findFirstByAvailableTrueAndNameIgnoreCase(name).orElseThrow(() -> new Exception("La pizza no existe"));
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -76,6 +76,14 @@ public class PizzaService {
     public List<Pizza> getWithout(String description) throws Exception {
         try {
             return pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainingIgnoreCase(description);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Pizza> findCheapestPizza(Double price) throws Exception {
+        try {
+            return pizzaRepository.findTop3ByAvailableTrueAndPriceLessThanEqualOrderByPriceAsc(price);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
