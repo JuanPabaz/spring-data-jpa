@@ -44,5 +44,6 @@ public class Order {
     private Customer customer;
 
     @OneToMany(targetEntity = OrderItem.class,mappedBy = "order",fetch = FetchType.LAZY)
+    @OrderBy("price ASC")
     private List<OrderItem> orderItemList;
 }
