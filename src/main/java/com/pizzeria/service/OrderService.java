@@ -1,6 +1,7 @@
 package com.pizzeria.service;
 
 import com.pizzeria.persistence.entity.Order;
+import com.pizzeria.persistence.projection.OrderSummary;
 import com.pizzeria.persistence.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,14 @@ public class OrderService {
     public List<Order> getCustomerOrders(String idCustomer) throws Exception {
         try {
             return orderRepository.findCustomerOrders(idCustomer);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public OrderSummary findOrderSummary(Integer idOrder) throws Exception {
+        try {
+            return orderRepository.findOrderSummary(idOrder);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
