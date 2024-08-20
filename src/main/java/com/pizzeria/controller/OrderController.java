@@ -35,4 +35,9 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getCustomerOrders(idCustomer));
     }
 
+    @GetMapping("/orderSummary/{idOrder}")
+    public ResponseEntity<?> getOrderSummary(@PathVariable(name = "idOrder") Integer idOrder) throws Exception {
+        return ResponseEntity.ok(orderService.findOrderSummary(idOrder));
+    }
+
 }
