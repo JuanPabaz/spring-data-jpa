@@ -19,4 +19,14 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAll());
     }
 
+    @GetMapping("/today")
+    public ResponseEntity<?> getByDate() throws Exception {
+        return ResponseEntity.ok(orderService.findByDate());
+    }
+
+    @GetMapping("/method")
+    public ResponseEntity<?> getByMethod() throws Exception {
+        return ResponseEntity.ok(orderService.getOutsideOrders());
+    }
+
 }
