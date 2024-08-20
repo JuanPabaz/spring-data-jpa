@@ -41,8 +41,11 @@ public class PizzaController {
     }
 
     @GetMapping("/available")
-    public ResponseEntity<?> getAllByAvailability() throws Exception {
-        return ResponseEntity.ok(pizzaService.findAllByAvailability());
+    public ResponseEntity<?> getAllByAvailability(@RequestParam(name = "page", defaultValue = "0")Integer page,
+                                                  @RequestParam(name = "elements",defaultValue = "8")Integer elements,
+                                                  @RequestParam(defaultValue = "price")String sortBy,
+                                                  @RequestParam(defaultValue = "ASC")String sortDirection) throws Exception {
+        return ResponseEntity.ok(pizzaService.findAllByAvailability(page,elements,sortBy,sortDirection));
     }
 
     @GetMapping("/name/{name}")
